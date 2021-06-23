@@ -44,7 +44,7 @@ func NewInternalServerError(message string, err error) *RestErr {
 	return result
 }
 
-func NewRestError(message string, status int64, cod_error string, cause int) *RestErr {
+func NewRestError(message string, status int64, cod_error string) *RestErr {
 	result := &RestErr{
 		Message: message,
 		Status:  http.StatusInternalServerError,
