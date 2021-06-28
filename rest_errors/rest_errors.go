@@ -3,6 +3,7 @@ package rest_errors
 import (
 	"errors"
 	"fmt"
+	"net/http"
 )
 
 type RestErr interface {
@@ -42,6 +43,14 @@ func NewRestError(message string, status int, err string, causes []interface{}) 
 		ErrStatus:  status,
 		ErrError:   err,
 		ErrCauses:  causes,
+	}
+}
+
+func NewBadRequestError(message string) RestErr {
+	return restErr{
+		ErrMessage: message,
+		ErrStatus:  http.StatusBadRequest,
+		ErrError:   "bad_request",
 	}
 }
 
